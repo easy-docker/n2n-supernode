@@ -1,8 +1,8 @@
 FROM alpine AS builder
 
 MAINTAINER Ghostry (ghostry@ghostry.cn)
-
-RUN apk add linux-headers build-base bash autoconf && \
+#RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+RUN apk add linux-headers build-base bash autoconf automake && \
     cd / && \
     wget https://github.com/ntop/n2n/archive/2.8.tar.gz && \
     tar zxvf 2.8.tar.gz && \
