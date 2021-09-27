@@ -2,18 +2,17 @@ FROM alpine AS builder
 
 MAINTAINER Ghostry (ghostry@ghostry.cn)
 #RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
-RUN apk add linux-headers build-base bash autoconf automake && \
+RUN apk add linux-headers build-base bash autoconf automake git && \
     cd / && \
-    wget https://github.com/ntop/n2n/archive/2.8.tar.gz && \
-    tar zxvf 2.8.tar.gz && \
-    cd n2n-2.8 && \
+    git clone https://github.com/ntop/n2n.git && \
+    cd n2n && \
     ./autogen.sh && \
-    ./configure && \
+    ./configure --with-zstd --with-openssl CFLAGS="-O3 -march=native -DSN_SELECTION_RTT" && \
     make
 
 FROM alpine
 
-COPY --from=builder /n2n-2.8/supernode /usr/bin
+COPY --from=builder /n2n/supernode /usr/bin
 
 EXPOSE 7654/udp
 EXPOSE 5645/udp
