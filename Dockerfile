@@ -13,8 +13,9 @@ RUN apk add linux-headers build-base bash autoconf automake git && \
 FROM alpine
 
 COPY --from=builder /n2n/supernode /usr/bin
+COPY startup.sh /
 
 EXPOSE 7654/udp
 EXPOSE 5645/udp
 
-ENTRYPOINT ["/usr/bin/supernode", "-v"]
+CMD ["/startup.sh"]
