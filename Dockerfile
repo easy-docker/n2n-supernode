@@ -12,6 +12,8 @@ RUN apk add linux-headers build-base bash autoconf automake git && \
 
 FROM alpine
 
+ENV PARAMETER "-v"
+
 COPY --from=builder /n2n/supernode /usr/bin
 COPY startup.sh /
 
