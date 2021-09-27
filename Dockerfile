@@ -7,7 +7,7 @@ RUN apk add linux-headers build-base bash autoconf automake git && \
     git clone https://github.com/ntop/n2n.git && \
     cd n2n && \
     ./autogen.sh && \
-    ./configure --with-zstd --with-openssl CFLAGS="-O3 -march=native -DSN_SELECTION_RTT" && \
+    ./configure --with-zstd --with-openssl CFLAGS="-DSN_SELECTION_RTT" && \
     make
 
 FROM alpine
