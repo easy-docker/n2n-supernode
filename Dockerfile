@@ -2,7 +2,7 @@ FROM alpine AS builder
 
 MAINTAINER Ghostry (ghostry@ghostry.cn)
 #RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
-RUN apk add linux-headers build-base bash autoconf automake git && \
+RUN apk add linux-headers build-base bash autoconf automake git zstd-dev openssl-dev && \
     cd / && \
     git clone https://github.com/ntop/n2n.git && \
     cd n2n && \
