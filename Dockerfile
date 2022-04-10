@@ -5,7 +5,7 @@ MAINTAINER Ghostry (ghostry@ghostry.cn)
 RUN apk add linux-headers build-base bash autoconf automake git zstd-dev openssl-dev
 
 RUN cd / && \
-    git clone -b dev --depth 1 https://github.com/ntop/n2n.git && \
+    git clone -b dev https://github.com/ntop/n2n.git && \
     cd n2n && \
     ./autogen.sh && \
     ./configure --with-zstd --with-openssl && \
